@@ -5,13 +5,15 @@
   "main": "0-constants.js",
   "type": "module",
   "dependencies": {
-    "eslint": "^8.50.0",
+    "eslint": "^8.50.0"
+  },
+  "devDependencies": {
     "jest": "^29.7.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node 0-main.js"
+    "dev": "node 0-main.js",
+    "run-my-script": "node 1-main.js"
   },
   "keywords": [],
   "author": "",
