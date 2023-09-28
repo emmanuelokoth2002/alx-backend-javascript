@@ -1,34 +1,19 @@
-import Currency from './3-currency';
+// 5-building.js
 
-export default class Pricing {
-  constructor(amount, currency) {
-    this.amount = amount;
-    this.currency = currency;
+class Building {
+  constructor(sqft) {
+    this._sqft = sqft;
   }
 
-  set amount(amount) {
-    this._amount = amount;
+  // Getter for 'sqft'
+  get sqft() {
+    return this._sqft;
   }
 
-  get amount() {
-    return this._amount;
-  }
-
-  set currency(currency) {
-    if (currency instanceof Currency) {
-      this._currency = currency;
-    }
-  }
-
-  get currency() {
-    return this._currency;
-  }
-
-  displayFullPrice() {
-    return `${this.amount} ${this.currency.name} (${this.currency.code})`;
-  }
-
-  static convertPrice(amount, conversionRate) {
-    return amount * conversionRate;
+  // Declare an abstract method
+  evacuationWarningMessage() {
+    throw new Error('Method evacuationWarningMessage must be implemented.');
   }
 }
+
+export default Building;
