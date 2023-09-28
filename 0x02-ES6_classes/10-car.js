@@ -1,16 +1,15 @@
-const CAR_ATTRIBUTES = Symbol("CarAttributes");
-
 export default class Car {
   constructor(brand, motor, color) {
-    this[CAR_ATTRIBUTES] = {
-      brand,
-      motor,
-      color,
-    };
+    this._brand = brand;
+    this._motor = motor;
+    this._color = color;
+  }
+
+  static get [Symbol.species]() {
+    return this;
   }
 
   cloneCar() {
-    const { brand, motor, color } = this[CAR_ATTRIBUTES];
-    return new this.constructor(brand, motor, color);
+    return new this.constructor[Symbol.species]();
   }
 }
