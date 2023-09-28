@@ -1,14 +1,34 @@
-export default class Building {
-  constructor(sqft) {
-    this._sqft = sqft;
+import Currency from './3-currency';
+
+export default class Pricing {
+  constructor(amount, currency) {
+    this.amount = amount;
+    this.currency = currency;
   }
 
-  get sqft() {
-    return this._sqft;
+  set amount(amount) {
+    this._amount = amount;
   }
 
-  // Abstract method to be overridden by subclasses
-  evacuationWarningMessage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
+  get amount() {
+    return this._amount;
+  }
+
+  set currency(currency) {
+    if (currency instanceof Currency) {
+      this._currency = currency;
+    }
+  }
+
+  get currency() {
+    return this._currency;
+  }
+
+  displayFullPrice() {
+    return `${this.amount} ${this.currency.name} (${this.currency.code})`;
+  }
+
+  static convertPrice(amount, conversionRate) {
+    return amount * conversionRate;
   }
 }
