@@ -1,16 +1,8 @@
 // 0-get_list_students.js
-
-// Create a function that returns an array of objects
-function getListStudents() {
-  const students = [
+export default function getListStudents() {
+  return [
     { id: 1, firstName: 'Guillaume', location: 'San Francisco' },
     { id: 2, firstName: 'James', location: 'Columbia' },
     { id: 5, firstName: 'Serena', location: 'San Francisco' },
   ];
-
-  return students;
 }
-
-// Export the function
-export default getListStudents;
-
