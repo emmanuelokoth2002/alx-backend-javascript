@@ -8,30 +8,27 @@ function countStudents(pathname) {
         return;
       }
 
-      const lines = data.split('\n').filter(Boolean); // Remove empty lines
-
-      const students = lines.map(line => {
-        const [firstname, lastname, age, field] = line.split(',');
-        return { firstname, lastname, age, field };
-      });
-
-      const totalStudents = students.length;
-
-      console.log(`Number of students: ${totalStudents}`);
+      const lines = data.split('\n').filter(Boolean);
 
       const fields = {};
 
-      students.forEach(student => {
-        if (fields[student.field]) {
-          fields[student.field].count += 1;
-          fields[student.field].list.push(student.firstname);
+      lines.forEach(line => {
+        const [firstname, lastname, age, field] = line.split(',');
+
+        if (fields[field]) {
+          fields[field].count += 1;
+          fields[field].list.push(firstname);
         } else {
-          fields[student.field] = {
+          fields[field] = {
             count: 1,
-            list: [student.firstname],
+            list: [firstname],
           };
         }
       });
+
+      const totalStudents = lines.length;
+
+      console.log(`Number of students: ${totalStudents}`);
 
       Object.entries(fields).forEach(([field, info]) => {
         console.log(`Number of students in ${field}: ${info.count}. List: ${info.list.join(', ')}`);
