@@ -1,31 +1,40 @@
 // 9-api/api.test.js
-const { expect } = require('chai');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
 const request = require('request');
-const app = require('./api');
 
-describe('Index page', function () {
-  // Existing tests for the index page
+chai.use(chaiHttp);
 
-  it('Other?', function (done) {
-    // Your additional tests for the index page go here
-    done();
-  });
-});
+const expect = chai.expect;
 
-describe('Cart page', function () {
-  it('Correct status code when :id is a number?', function (done) {
-    request.get('http://localhost:7865/cart/123', (error, response) => {
+describe('Index page', () => {
+  it('should return a status code of 200', (done) => {
+    request('http://localhost:7865', (error, response, body) => {
       expect(response.statusCode).to.equal(200);
       done();
     });
   });
 
-  it('Correct status code when :id is NOT a number (=> 404)?', function (done) {
-    request.get('http://localhost:7865/cart/hello', (error, response) => {
-      expect(response.statusCode).to.equal(404);
+  it('should return the message "Welcome to the payment system"', (done) => {
+    request('http://localhost:7865', (error, response, body) => {
+      expect(body).to.equal('Welcome to the payment system');
+      done();
+    });
+  });
+});
+
+describe('Cart page', () => {
+  it('should return a status code of 200 when :id is a number', (done) => {
+    request('http://localhost:7865/cart/12', (error, response, body) => {
+      expect(response.statusCode).to.equal(200);
       done();
     });
   });
 
-  // Additional tests for the cart page go here
+  it('should return a status code of 404 when :id is NOT a number', (done) => {
+    request('http://localhost:7865/cart/hello', (error, response, body) => {
+      expect(response.statusCode).to.equal(404);
+      done();
+    });
+  });
 });
