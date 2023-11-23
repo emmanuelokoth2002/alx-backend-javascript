@@ -1,25 +1,23 @@
-// 8-api/api.test.js
-const { expect } = require('chai');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
 const request = require('request');
-const app = require('./api');
 
-describe('Index page', function () {
-  it('Correct status code?', function (done) {
-    request.get('http://localhost:7865', (error, response) => {
+chai.use(chaiHttp);
+
+const expect = chai.expect;
+
+describe('Index page', () => {
+  it('should return a status code of 200', (done) => {
+    request('http://localhost:7865', (error, response, body) => {
       expect(response.statusCode).to.equal(200);
       done();
     });
   });
 
-  it('Correct result?', function (done) {
-    request.get('http://localhost:7865', (error, response, body) => {
+  it('should return the message "Welcome to the payment system"', (done) => {
+    request('http://localhost:7865', (error, response, body) => {
       expect(body).to.equal('Welcome to the payment system');
       done();
     });
-  });
-
-  it('Other?', function (done) {
-    // Your additional tests go here
-    done();
   });
 });
