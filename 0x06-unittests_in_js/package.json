@@ -1,0 +1,12 @@
+{
+  "name": "alx-backend-javascript",
+  "version": "1.0.0",
+  "description": "Unit testing in JS project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}
